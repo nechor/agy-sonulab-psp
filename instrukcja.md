@@ -331,6 +331,15 @@ Na zrzutach ekranu w aplikacji VoidX Control widoczne są m.in. następujące pr
 * **Blok Reverb (Galaxy):** Decay `0.25`, Mix `0.28`, Modulation `44%`, Hi Damp `9714Hz`, Lo Damp `60Hz`.
 * **Blok Master:** Volume `50%`, IN 2 Volume `50%`, Global TEMPO `71.48BPM`, Preset Level `0.0dB`, Preset TEMPO `120.0BPM`.
 
+### 9.3 Konfiguracja portu USB w aplikacji (USB Settings):
+W ustawieniach aplikacji VoidX-Control dostępne są opcje kontrolujące zachowanie portu USB-C w StompStation PRO:
+1. **Mode (Tryb połączenia USB):**
+   * **data (Dane):** Urządzenie działa jako kontroler i odbiornik plików. Służy do wgrywania modeli NAM, impulsów IR, presetów oraz aktualizacji oprogramowania.
+   * **audio (Dźwięk):** Urządzenie przełącza się w tryb cyfrowego interfejsu audio (karty dźwiękowej) 32-bit do bezpośredniego nagrywania i odtwarzania przez DAW.
+2. **Audio mode (Tryb monitorowania):**
+   * **standard:** Odsłuch powraca z komputera/DAW przez USB (słyszysz sygnał po przejściu przez komputer, co może generować opóźnienia/latencję).
+   * **monitor (Odsłuch bezpośredni):** Sygnał gitary trafia do wyjść i słuchawek bezpośrednio z procesora StompStation PRO (zerowe opóźnienie podczas nagrywania ścieżki).
+
 ---
 
 ## 10. Specyfikacja i Integracja MIDI
