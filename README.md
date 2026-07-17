@@ -15,6 +15,11 @@ Witaj w repozytorium wiedzy i analiz dla urządzenia **Sonulab StompStation PRO*
 * ### 📄 [Lista Impulsów IR (Impulse Responses)](file:///c:/Users/dariu/agy/agy-sonulab/lista_ir.md)
   Spis fabrycznych i zaimportowanych impulsów głośnikowych (IR) w urządzeniu (22 pozycje). Zawiera nazwy i krótkie opisy ułatwiające orientację w dostępnych brzmieniach kolumn (np. British Cab, Daemon Cab, Bogner, Mesa, Fender).
 
+* ### 📄 [Lista Wzmacniaczy (Profile NAM)](file:///c:/Users/dariu/agy/agy-sonulab/lista_wzmacniaczy.md)
+  Analiza i identyfikacja 24 profili wzmacniaczy widocznych w urządzeniu:
+  * Odszyfrowanie nazw handlowych i skrótów na oryginalne modele (np. Marshall, Fender, Vox, Mesa Boogie, Soldano, Diezel, ENGL, Hiwatt).
+  * Klasyfikacja profili na wersje **[RIG / CAB]** (zawierające gotową symulację kolumny i mikrofonu) oraz **[AMP ONLY]** (czysty sygnał z samej głowy wzmacniacza, wymagający użycia bloku IR).
+
 ---
 
 ## Szybka Ściągawka (Fizyczna Nawigacja)
