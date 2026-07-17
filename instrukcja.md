@@ -387,18 +387,55 @@ Gdy urządzenie wykryje aktywny zegar MIDI Clock na wejściu, automatycznie aktu
 ---
 
 ## 12. Specyfikacja Techniczna i Wymagania Systemowe
-* **Zasilanie:** 9V DC, 1000 mA lub USB-C 5V, 1000mA.
-* **Złącza (Connectors):** Wejście i wyjście Jack 6.35 mm (opisywane w instrukcji po włosku jako *Ingresso e Uscita Jack 6,35 mm*), wyjście MIDI Out, port USB-C.
-* **Przetworniki analogowo-cyfrowe:** 192kHz/32-bit o dynamice 117dB Burr-Brown™.
-* **Impedancja wejściowa:** 1 MΩ.
-* **Zakres wejściowy:** 14dBu.
-* **Zakres wyjściowy:** 14dBu.
-* **Impedancja wyjściowa:** 600 Ω.
-* **Konstrukcja obudowy:** Stal nierdzewna AISI 304.
-* **Waga:** 600 g.
-* **Wymiary:** 180 mm x 85 mm x 30 mm (lub 47 mm wliczając wysokość przełączników nożnych).
 
-### Minimalne Wymagania Systemowe aplikacji VoidX Control:
+### 12.1 Specyfikacja (Specs)
+
+#### Silnik Audio (Audio Engine):
+* **Natywny odtwarzacz NAM Player (A2):** Bezstratna jakość (brak jakiejkolwiek konwersji).
+* **Obsługa do 2 plików NAM** jednocześnie na jeden preset.
+* **Stereofoniczny ładowacz impulsów IR** (Stereo IR Loader).
+* **Wysokiej jakości efekty Stereo FX:** Modulacja, Delay, Reverb i wiele innych.
+* **Przetworniki:** 192kHz / 32-bit z dynamiką **117dB** (Burr-Brown™).
+
+#### Kontrola i Sterowanie (Controls):
+* **Kolorowy wyświetlacz** (Full color Display).
+* **3 wielofunkcyjne przełączniki nożne** (footswitche).
+* **Dedykowane pokrętła** dla najczęściej używanych parametrów.
+* **Wbudowany tuner oraz Tap Tempo**.
+
+#### Łączność (Connectivity):
+* **Główne wejście instrumentu (Input 1):** Jack TRS 6.35 mm.
+* **Wejście 2 (Input 2):** Jack TRS 6.35 mm.
+* **Wyjście Stereo:** Gniazda Jack TRS 6.35 mm.
+* **MIDI In & Out/Thru:** Złącza TRS Type A.
+* **Połączenie bezprzewodowe** z aplikacją **VoidX-Control** (Bluetooth/Wi-Fi).
+* **Port USB-C:** Zasilanie, interfejs audio oraz połączenie z VoidX-Control.
+
+#### Konstrukcja (Design):
+* Kompaktowy format przyjazny dla pedalboardów.
+* Zoptymalizowany pod kątem pracy na scenie (live) oraz w studiu.
+* **Obudowa:** Stal nierdzewna AISI 304.
+* **Waga:** 600 g.
+* **Wymiary:** 180 mm x 85 mm x 30 mm (180 mm x 85 mm x 47 mm wliczając wysokość przełączników).
+
+---
+
+### 12.2 Kluczowe Cechy Techniczne (Tech Keys)
+
+* **Natywna architektura NAM (Native NAM Architecture):**  
+  StompStation PRO uruchamia modele NAM natywnie, bez utraty jakości. Możliwość załadowania i używania do 2 plików NAM na preset gwarantuje maksymalny realizm i dynamiczną odpowiedź na grę.
+* **Stereofoniczny silnik IR (Stereo IR Engine):**  
+  Pełny stereofoniczny loader impulsów z niezależnym przetwarzaniem lewego/prawego kanału dla uzyskania szerokich, szczegółowych brzmień przestrzennych.
+* **Efekty klasy studyjnej (Studio-Grade effects):**  
+  Wysokiej jakości bloki efektów zaprojektowane z myślą o występach na żywo oraz nagraniach studyjnych.
+* **Szybkie kształtowanie brzmienia (Fast Tone Shaping):**  
+  Dedykowane fizyczne pokrętła kontrolne dla najważniejszych parametrów. Natychmiastowa korekcja brzmienia bezpośrednio z panelu urządzenia.
+* **Zaawansowana kontrola i integracja (Advance Control & Integration):**  
+  3 przełączniki nożne do zarządzania presetami/bankami, tunerem oraz tempem TAP. Pełna implementacja komunikatów MIDI PC/CC dla bezproblemowej integracji z dowolnym zestawem koncertowym.
+
+---
+
+### 12.3 Minimalne Wymagania Systemowe aplikacji VoidX Control:
 * **iOS:** wersja 13 (nazwa kodowa Yukon).
 * **macOS:** wersja 10.15 (Catalina).
 * **Windows:** wersje 10 / 11.
