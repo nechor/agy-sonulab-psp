@@ -1,35 +1,44 @@
 ---
 name: new-nam
 description: >-
-  Scans recently downloaded ZIP files in the user's Downloads directory.
-  If a ZIP contains Neural Amp Modeler (.nam) files or Impulse Response (.wav/.ir)
-  files, it extracts and organizes them into C:\Users\dariu\Documents\nam_ir\nam or
-  C:\Users\dariu\Documents\nam_ir\ir folders.
+  Scans recently downloaded files and ZIPs in the user's Downloads directory.
+  If it detects Neural Amp Modeler (.nam), Impulse Response (.wav/.ir) or Sonulab Preset (.pst)
+  files, it extracts and organizes them into C:\Users\dariu\Documents\nam_ir\nam,
+  C:\Users\dariu\Documents\nam_ir\ir, or C:\Users\dariu\Documents\nam_ir\presets folders.
 ---
 
-# New NAM Organizer
+# New NAM, IR, and Preset Organizer
 
 ## Overview
-This skill scans the user's `Downloads` folder for recently modified/downloaded ZIP files. It inspects their contents to check for `.nam` (Neural Amp Modeler profiles) or `.wav`/`.ir` (Impulse Responses) files. Based on the file type, it extracts the archive into a dedicated subfolder under `Documents\nam_ir\nam\` or `Documents\nam_ir\ir\`.
+This skill scans the user's `Downloads` folder for recently modified/downloaded ZIP files or direct files. It inspects them for:
+- `.nam` files (Neural Amp Modeler profiles)
+- `.wav` / `.ir` files (Impulse Responses)
+- `.pst` files (Sonulab Presets)
+
+Based on the file type, it moves or extracts them into:
+- `C:\Users\dariu\Documents\nam_ir\nam\`
+- `C:\Users\dariu\Documents\nam_ir\ir\`
+- `C:\Users\dariu\Documents\nam_ir\presets\`
 
 ## Dependencies
-- PowerShell 5.0 or newer.
+- Python 3.x
+- Virtual environment `.venv` configured in the workspace root.
 
 ## Quick Start
-To trigger this skill, the user can say "new nam". The agent then runs the organization script:
+To trigger this skill, the user can say "new nam". The agent then runs the Python organizer script:
 
 ```powershell
-powershell -ExecutionPolicy Bypass -File "c:\Users\dariu\agy\agy-sonulab\.agents\skills\new-nam\organize_nam_ir.ps1"
+.\.venv\Scripts\python.exe c:\Users\dariu\agy\agy-sonulab\.agents\skills\new-nam\organize_nam_ir.py
 ```
 
 ## Workflow
 When the user says "new nam":
-1. Run the helper PowerShell script:
+1. Run the Python helper script:
    ```powershell
-   powershell -ExecutionPolicy Bypass -File "c:\Users\dariu\agy\agy-sonulab\.agents\skills\new-nam\organize_nam_ir.ps1"
+   .\.venv\Scripts\python.exe c:\Users\dariu\agy\agy-sonulab\.agents\skills\new-nam\organize_nam_ir.py
    ```
-2. Display the output logs of the script to the user, highlighting which ZIP files were detected, where they were extracted, and the final count of processed files.
+2. Display the output logs of the script to the user, highlighting which files or ZIPs were detected, where they were moved/extracted, and the final count of processed files.
 
 ## Common Mistakes
-- **No ZIPs found**: If no ZIP files are in the Downloads directory, ensure the files have been downloaded as `.zip`.
-- **Wrong extensions**: Files inside ZIP must end with `.nam`, `.wav`, or `.ir` to be detected and processed.
+- **No files found**: If no files are processed, ensure the downloaded files have `.nam`, `.wav`, `.ir`, `.pst`, or `.zip` extensions and are located in `Downloads`.
+- **ZIP not extracted**: The ZIP file must contain at least one `.nam`, `.wav`/`.ir`, or `.pst` file at some level inside the archive to trigger extraction.

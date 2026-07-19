@@ -8,27 +8,23 @@ import re
 API_URL = "https://www.tone3000.com/api/v1"
 
 def get_api_key():
-    # 1. Sprawdź zmienną środowiskową
     api_key = os.environ.get("TONE3000_API_KEY")
     if api_key:
         return api_key
         
-    # 2. Sprawdź plik .env w katalogu roboczym
     if os.path.exists(".env"):
         with open(".env", "r", encoding="utf-8") as f:
             for line in f:
                 if line.startswith("TONE3000_API_KEY="):
                     return line.strip().split("=")[1].strip("'\" ")
                     
-    # 3. Zapytaj użytkownika
     print("Klucz API TONE3000 nie został znaleziony.")
     print("Możesz go wygenerować w ustawieniach swojego konta na tone3000.com.")
     api_key = input("Wprowadź swój klucz Secret Key (t3k_cs_...): ").strip()
     if not api_key:
-        print("Błąd: Klucz API jest wymagany do pobierania/odpytywania plików.")
+        print("Błąd: Klucz API jest wymagany.")
         sys.exit(1)
         
-    # Zapisz klucz do .env na przyszłość
     try:
         with open(".env", "a", encoding="utf-8") as f:
             f.write(f"\nTONE3000_API_KEY={api_key}\n")
@@ -95,6 +91,38 @@ def print_tone_info(tone):
     print(f"Link WWW:     {url}")
     print("-" * 50)
 
+def download_models_for_tone(tone_id, tone_title, headers, output_dir):
+    url = f"{API_URL}/models"
+    params = {
+        "tone_id": tone_id,
+        "architecture": "2" # NAM A2
+    }
+    
+    try:
+        res = requests.get(url, headers=headers, params=params)
+        if res.status_code != 200:
+            print(f"  Nie udało się pobrać listy modeli dla ID {tone_id} (status {res.status_code})")
+            return
+            
+        models_data = res.json()
+        models = models_data.get("data", []) if isinstance(models_data, dict) else models_data
+        
+        if not models:
+            print(f"  Brak kompatybilnych modeli NAM A2 dla brzmienia: {tone_title}")
+            return
+            
+        for model in models:
+            model_url = model.get("model_url")
+            filename = model.get("name") or model.get("filename") or f"{sanitize_filename(tone_title)}.nam"
+            if not filename.endswith(".nam"):
+                filename += ".nam"
+                
+            output_path = os.path.join(output_dir, filename)
+            download_file(model_url, headers, output_path)
+            
+    except Exception as e:
+        print(f"  Błąd podczas pobierania modeli dla brzmienia {tone_title}: {e}")
+
 def search_and_download(query, headers, output_dir, limit=1, gears=None, sizes=None, sort=None, calibrated=False, info_only=False):
     print(f"\nWyszukiwanie w TONE3000 dla: '{query}'...")
     url = f"{API_URL}/tones/search"
@@ -156,19 +184,16 @@ def get_tone_by_id(tone_id, headers):
 
 def main():
     parser = argparse.ArgumentParser(description="Pobieranie i odpytywanie modeli NAM A2 z portalu TONE3000.com")
-    parser.add_argument("--search", type=str, help="Wyszukaj model na podstawie frazy (np. 'Fender Twin')")
+    parser.add_argument("--search", type=str, help="Wyszukaj model na podstawie frazy")
     parser.add_argument("--tone-id", type=int, help="Wyszukaj/pobierz model bezpośrednio na podstawie Tone ID")
-    parser.add_argument("--file", type=str, help="Ścieżka do pliku tekstowego z listą fraz do wyszukania")
-    parser.add_argument("--out-dir", type=str, default="./downloads", help="Folder docelowy dla pobranych plików (domyślnie: ./downloads)")
+    parser.add_argument("--file", type=str, help="Ścieżka do pliku tekstowego z listą fraz")
+    parser.add_argument("--out-dir", type=str, default="./downloads", help="Folder docelowy")
     
-    # Dodatkowe filtry
-    parser.add_argument("--gears", type=str, help="Typ urządzenia: amp, amp-cab, pedal, outboard, cab, space, experimental")
-    parser.add_argument("--sizes", type=str, help="Rozmiar modelu: standard, lite, feather, nano, custom")
-    parser.add_argument("--sort", type=str, choices=["best-match", "newest", "oldest", "trending", "downloads-all-time"], help="Sortowanie wyników")
-    parser.add_argument("--calibrated", action="store_true", help="Pobierz/szukaj tylko modele skalibrowane")
-    
-    # Tryb informacyjny (bez pobierania)
-    parser.add_argument("--info", action="store_true", help="Tylko wyświetl informacje i statystyki o brzmieniach, nie pobieraj plików")
+    parser.add_argument("--gears", type=str)
+    parser.add_argument("--sizes", type=str)
+    parser.add_argument("--sort", type=str, choices=["best-match", "newest", "oldest", "trending", "downloads-all-time"])
+    parser.add_argument("--calibrated", action="store_true")
+    parser.add_argument("--info", action="store_true")
     
     args = parser.parse_args()
     
@@ -190,10 +215,7 @@ def main():
                 gears=args.gears, sizes=args.sizes, sort=args.sort, calibrated=args.calibrated,
                 info_only=True
             )
-        elif args.file:
-            print("Opcja --info nie jest bezpośrednio wspierana przy odczycie z pliku.")
     else:
-        # Zwykłe pobieranie
         os.makedirs(args.out_dir, exist_ok=True)
         if args.tone_id:
             print(f"Rozpoczynanie pobierania dla Tone ID: {args.tone_id}...")

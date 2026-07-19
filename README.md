@@ -24,6 +24,7 @@ Witaj w repozytorium wiedzy i analiz dla urządzenia **Sonulab StompStation PRO*
   Narzędzie CLI w języku Python ułatwiające wyszukiwanie, sprawdzanie metadanych (pobrania, polubienia) i pobieranie modeli NAM A2 z portalu TONE3000.com.
 
 * ### 🤖 Skille Agenta (w folderze [.agents/skills](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills)):
+  * **[new-nam](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills/new-nam/SKILL.md):** Skrypujący organizator plików w Pythonie. Skanuje pobrane pliki ZIP oraz pliki bezpośrednie w Downloads, segregując profile `.nam`, impulsy `.wav`/`.ir` oraz presety `.pst` (Sonulab) do odpowiednich folderów w `Documents\nam_ir\`.
   * **[tone3000-search](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills/tone3000-search/SKILL.md):** Odpytywanie portalu o metadane i statystyki brzmień.
   * **[tone3000-download](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills/tone3000-download/SKILL.md):** Automatyczne pobieranie plików `.nam` na podstawie zapytań lub ID.
 
