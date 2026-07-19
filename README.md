@@ -20,6 +20,13 @@ Witaj w repozytorium wiedzy i analiz dla urządzenia **Sonulab StompStation PRO*
   * Odszyfrowanie nazw handlowych i skrótów na oryginalne modele (np. Marshall, Fender, Vox, Mesa Boogie, Soldano, Diezel, ENGL, Hiwatt).
   * Klasyfikacja profili na wersje **[RIG / CAB]** (zawierające gotową symulację kolumny i mikrofonu) oraz **[AMP ONLY]** (czysty sygnał z samej głowy wzmacniacza, wymagający użycia bloku IR).
 
+* ### 🛠️ [Skrypt Pobierania NAM A2 (download_nam.py)](file:///c:/Users/dariu/agy/agy-sonulab/download_nam.py)
+  Narzędzie CLI w języku Python ułatwiające wyszukiwanie, sprawdzanie metadanych (pobrania, polubienia) i pobieranie modeli NAM A2 z portalu TONE3000.com.
+
+* ### 🤖 Skille Agenta (w folderze [.agents/skills](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills)):
+  * **[tone3000-search](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills/tone3000-search/SKILL.md):** Odpytywanie portalu o metadane i statystyki brzmień.
+  * **[tone3000-download](file:///c:/Users/dariu/agy/agy-sonulab/.agents/skills/tone3000-download/SKILL.md):** Automatyczne pobieranie plików `.nam` na podstawie zapytań lub ID.
+
 ---
 
 ## Szybka Ściągawka (Fizyczna Nawigacja)
