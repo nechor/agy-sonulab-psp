@@ -254,10 +254,39 @@ Sekcja przestrzenna oferująca klasyczne pogłosy oraz zaawansowane algorytmy (T
 * **Preset Level:** Indywidualna głośność danego presetu (służy do wyrównywania poziomów między różnymi brzmieniami).
 * **Present TEMPO:** Indywidualne tempo zapisane bezpośrednio w presecie (przydatne przy graniu utworów o różnym tempie w ramach jednego banku).
 
+#### Wirtualne Kontrolery (Controllers)
+StompStation PRO umożliwia skonfigurowanie dwóch niezależnych wirtualnych kontrolerów (**Controller 1** oraz **Controller 2**) na poziomie każdego presetu, a także jednego kontrolera globalnego (**Global Controller**):
+
+* **Global Controller (Globalny):** 
+  * Działa na poziomie całego urządzenia, niezależnie od wybranego presetu.
+  * Ustawienia przypisania źródła (np. zewnętrznego pedału ekspresji) oraz kontrolowanych parametrów są wspólne dla wszystkich brzmień (przydatne np. do stałej kontroli głośności Master Volume lub efektu Wah).
+* **Controller 1 i Controller 2 (Lokalne / per preset):**
+  * Konfigurowane są w menu Master danego presetu. Ich zachowanie, przypisane parametry oraz zakresy działania są zapisywane i wczytywane w ramach poszczególnych presetów.
+  * Umożliwia to przypisanie tego samego fizycznego pedału lub pokrętła MIDI do zupełnie innych zadań w różnych presetach (np. w jednym presecie kontroluje gain wzmacniacza, w innym nasycenie delaya).
+
+#### Konfiguracja Źródeł Sterowania (Source):
+Każdy kontroler wirtualny musi mieć przypisane fizyczne źródło sygnału sterującego:
+1. **Pedał ekspresji (wewnętrzny kontroler):** W menu wyboru oznaczony jako **ctrl** (reaguje na ruch podłączonego fizycznego pedału ekspresji).
+2. **Komunikaty MIDI CC:** Dowolny zewnętrzny kontroler MIDI wysyłający komunikaty CC.
+   * *Wybór ręczny:* Wybór adresu z zakresu od 32 do 127 (adresy poniżej 32 są zarezerwowane dla systemu).
+   * *Tryb LEARN:* Uruchomienie tej funkcji pozwala na automatyczne sparowanie – urządzenie przypisze się do pierwszego odebranego komunikatu MIDI CC z zewnętrznego sprzętu.
+
+#### Przypisywanie Parametrów do Kontrolerów (Linking):
+* Aby kontrolować wybrany parametr (np. Delay Mix) za pomocą kontrolera:
+  1. Wejdź w edycję danego parametru i otwórz jego menu opcji (ikona trzech kropek).
+  2. Wybierz opcję **Link to Controller 1** lub **Link to Controller 2** (lub **Link to Global**).
+* **Limit przypisań:** Każdy z wirtualnych kontrolerów (1 i 2) może kontrolować maksymalnie **3 parametry jednocześnie** w ramach jednego presetu.
+* **Zakres kontroli (Control Range):** Dla każdego powiązanego parametru można zdefiniować wartość minimalną oraz maksymalną (wyrażoną w procentach), co ogranicza zakres zmian parametru podczas ruchu kontrolera.
+* **Usuwanie powiązania:** Aby odłączyć parametr od kontrolera, należy ponownie wejść w menu opcji parametru i wybrać **Remove link**.
+
 ---
 
 ## 8. Menu Ustawień Setup (Zaawansowane i Systemowe)
 Aby uzyskać dostęp do menu Setup, przytrzymaj pokrętło **BROWSE/VOLUME** w menu głównym aplikacji na pedale.
+
+> [!NOTE]
+> **Zasada nawigacji w menu Setup:** Aby zmienić dowolny parametr w menu Setup, wciśnij pokrętło **BROWSE/VOLUME** na wybranej opcji, dostosuj wartość obracając pokrętło, a następnie wciśnij je ponownie, aby zatwierdzić zmianę i powrócić do poprzedniego menu. Procedura ta dotyczy wszystkich ustawień systemowych urządzenia.
+
 
 ### 8.1 Kategoria "Setting" (Ustawienia Urządzenia)
 * **Tuner:** Konfiguracja stroika.
@@ -296,6 +325,12 @@ Aplikacja VoidX Control rozszerza możliwości fizycznego interfejsu urządzenia
 1. Pobierz aplikację na system zgodny z wymaganiami (iOS 13+, macOS 10.15+, Windows 10/11, Android 7.0+).
 2. Połącz się poprzez **Bluetooth** (aplikacja wykryje pedał automatycznie) lub **Wi-Fi** (wprowadź dane sieci w menu *System -> Wi-Fi* na pedale).
 3. Wybierz odpowiedni pedał z listy, klikając strzałki w prawym dolnym rogu ekranu aplikacji.
+
+### Wybór Urządzenia (Multi-Pedal Support):
+Aplikacja VoidX-Control obsługuje jednoczesne połączenie z wieloma urządzeniami StompStation. Aby przełączyć się na inny pedał:
+1. Kliknij ikony strzałek w prawym dolnym rogu ekranu aplikacji.
+2. Przewiń listę wykrytych urządzeń i wybierz pedał, którym chcesz zarządzać.
+
 
 ### Układ Aplikacji (Application Layout):
 * **Preset:** Kliknij na nazwę presetu, aby opcjonalnie otworzyć pełną listę presetów. Używaj strzałek `<` i `>`, aby przełączać presety bez otwierania listy.
@@ -457,11 +492,21 @@ Gdy urządzenie wykryje aktywny zegar MIDI Clock na wejściu, automatycznie aktu
 Urządzenie jest zgodne z zasadniczymi wymaganiami i innymi stosownymi postanowieniami dyrektywy RoHS 2011/65/EU wraz z poprawką (EU) 2015/863, a także dyrektywy radiowej RED 2014/53/EU.
 
 ### Utylizacja Zużytego Sprzętu Elektrycznego (WEEE):
-Symbol przekreślonego kosza na śmieci oznacza, że zużytego sprzętu elektrycznego i elektronicznego nie wolno wyrzucać razem z nieposortowanymi odpadami komunalnymi. Użytkownik jest zobowiązany do przekazania sprzętu do wyznaczonego punktu zbiórki w celu właściwego recyklingu. Prawidłowa utylizacja pomaga chronić cenne zasoby naturalne i zapobiega negatywnemu wpływowi na środowisko i zdrowie ludzi. Szczegółowe informacje o punktach zbiórki można uzyskać u lokalnych władz.
+Symbol przekreślonego kosza na śmieci oznacza, że zużytego sprzętu elektrycznego i elektronicznego nie wolno wyrzucać razem z nieposortowanymi odpadami komunalnymi. Użytkownik jest zobowiązany do przekazania sprzętu do wyznaczonego punktu zbiórki w celu właściwego recyklingu. Prawidłowa utylizacja pomaga chronić cenne zasoby naturalne i zapobiega negatywnemu wpływowi na środowisko i zdrowie ludzi. Za nieprawidłową utylizację odpadów mogą grozić kary zgodnie z lokalnym i krajowym ustawodawstwem. Szczegółowe informacje o punktach zbiórki można uzyskać u lokalnych władz.
 
-### Ostrzeżenia ogólne:
-* Aby zapobiec uszkodzeniom, używaj wyłącznie zasilacza zgodnego ze specyfikacją (9V DC, 1000 mA).
-* Urządzenie należy obsługiwać ostrożnie – unikać upadków i silnych uderzeń.
+### Ostrzeżenia ogólne i Bezpieczeństwo Dzieci:
+* Aby zapobiec uszkodzeniom, używaj wyłącznie zasilacza zgodnego ze specyfikacją (9V DC, 1000 mA lub USB-C 5V 1000mA).
+* Urządzenie należy obsługiwać ostrożnie – unikać upadków, silnych uderzeń oraz bezpośredniego wystawienia na działanie promieni słonecznych.
 * Nie wolno otwierać obudowy urządzenia. Pedał nie zawiera żadnych części podlegających samodzielnemu serwisowaniu przez użytkownika.
-* Przechowywać z dala od wilgoci, kurzu oraz bezpośredniego nasłonecznienia.
-* Produkt nie jest zabawką – trzymać poza zasięgiem dzieci (ryzyko zadławienia małymi elementami/kablami). Dzieci mogą przebywać w pobliżu urządzenia wyłącznie pod nadzorem dorosłych.
+* Przechowywać z dala od wilgoci, kurzu oraz skrajnych temperatur.
+* **Produkt nie jest zabawką:** Urządzenie jest przeznaczone wyłącznie dla osób dorosłych lub doświadczonych użytkowników. Trzymać poza zasięgiem dzieci.
+* **Ryzyko zadławienia:** Pedał oraz jego akcesoria (kable, złącza) zawierają małe elementy. Dzieci mogą przebywać w pobliżu urządzenia wyłącznie pod bezwzględnym nadzorem dorosłych.
+
+---
+
+## 14. Znaki Towarowe i Zastrzeżenia Prawne (Legal Disclaimer)
+
+* **Znaki towarowe:** Sonulab, StompStation oraz StompStation PRO są zastrzeżonymi znakami towarowymi firmy Sonulab Srl. Wszystkie prawa zastrzeżone.
+* **Inne marki:** Mac, logo Mac, Audio Units, iPhone®, iPod touch®, iPad® są znakami towarowymi firmy Apple Inc. App Store jest punktem usługowym firmy Apple Inc. Windows jest zastrzeżonym znakiem towarowym firmy Microsoft Corporation. Wszystkie inne nazwy produktów, znaki towarowe i nazwy artystów należą do ich odpowiednich właścicieli i nie są w żaden sposób powiązane ani stowarzyszone z firmą Sonulab.
+* **Prawa autorskie użytkownika:** Użytkownik oświadcza i gwarantuje, że posiada prawa lub licencje do wszystkich treści (w tym profili NAM i plików IR), które wgrywa do urządzenia. Firma Sonulab zrzeka się odpowiedzialności za treści wgrywane przez użytkowników i zastrzega możliwość zmiany specyfikacji bez powiadomienia.
+

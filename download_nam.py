@@ -5,6 +5,13 @@ import requests
 import json
 import re
 
+# Reconfigure stdout to use utf-8 to avoid encoding errors in windows shell
+try:
+    sys.stdout.reconfigure(encoding='utf-8')
+except AttributeError:
+    pass
+
+
 API_URL = "https://www.tone3000.com/api/v1"
 
 def get_api_key():
